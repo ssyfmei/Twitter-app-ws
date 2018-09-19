@@ -17,7 +17,6 @@ public class FriendEntity
 	@JoinColumn(name="users_id")
 	private UserEntity userId;
 	
-	
 	private long friendId;
 	
 	public long getId() {

@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-	public UserDTO getUser(String email) {
+	public UserDTO getUserByEmail(String email) {
 		UserDTO returnValue = new UserDTO();
 	    UserEntity userEntity = userRepository.findByEmail(email);
 	    BeanUtils.copyProperties(userEntity, returnValue);
@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO updateUser(String id, UserDTO userDto) {	
-		UserEntity userEntity = userRepository.findByUserId(id);
+	public UserDTO updateUser(String userId, UserDTO userDto) {	
+		UserEntity userEntity = userRepository.findByUserId(userId);
 		
 		userEntity.setScreenName(userDto.getScreenName());
 		UserEntity updatedEntity = userRepository.save(userEntity);
@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO getUserByUserId(String userId) {
+	public UserDTO getUser(String userId) {
 //	    UserDTO returnValue = new UserDTO();
 //	    UserEntity userEntity = userRepository.findByUserId(userId);
 //	    BeanUtils.copyProperties(userEntity, returnValue);

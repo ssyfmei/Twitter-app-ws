@@ -29,7 +29,7 @@ public class TweetServiceImpl implements TweetService
 	public TweetDTO postTweet(TweetDTO tweetDto) {
 		String tweetId = utils.generateTweetId(tweetIdLen);
 		
-		UserDTO userDetails = userService.getUser(tweetDto.getUserEmail());
+		UserDTO userDetails = userService.getUserByEmail(tweetDto.getUserEmail());
 		String userId = userDetails.getUserId();
 		String screenName = userDetails.getScreenName();
 		tweetDto.setUserDetails(userDetails);
@@ -61,4 +61,14 @@ public class TweetServiceImpl implements TweetService
 		TweetEntity tweetEntity = tweetRepository.findByTweetId(tweetId);
 		return modelMapper.map(tweetEntity, TweetDTO.class);
 	}
+
+    @Override
+    public void deleteTweet(String tweetId) {
+        TweetEntity tweetEntity = tweetRepository.findByTweetId(tweetId);
+//        if(tweetEntity == null) {
+//            throw new UserServiceException(ErrorMessageEnum.NO_RECORD_FOUND.getErrorMessage());
+//        }
+        tweetRepository.delete(tweetEntity);
+    }
+
 }

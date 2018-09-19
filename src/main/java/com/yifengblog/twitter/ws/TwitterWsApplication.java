@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class TwitterWsApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(TwitterWsApplication.class, args);
 	}
@@ -23,6 +22,9 @@ public class TwitterWsApplication {
 		return new ModelMapper();
 	}
 	
+    /*
+     * a context with component scan 
+     */
 	@Bean
 	public SpringApplicationContext springApplicationContext() {
 		return new SpringApplicationContext();

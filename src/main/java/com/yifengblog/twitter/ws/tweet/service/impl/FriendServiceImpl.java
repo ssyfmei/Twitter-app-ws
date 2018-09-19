@@ -33,22 +33,16 @@ public class FriendServiceImpl implements FriendService {
 		friendRepository.save(friendEntity);
 	}
 
-    @Override
-    public void deleteFriend(String userEmail, String friendEmail) {
-        // TODO Auto-generated method stub
-        
-    }
+	@Override
+	public void deleteFriend(String userEmail, String friendEmail) {
+		UserEntity userEntity = userRepository.findByEmail(userEmail);
+		UserEntity userFriendEntity=userRepository.findByEmail(friendEmail);
 
-//	@Override
-//	public void deleteFriend(String userEmail, String friendEmail) {
-//		UserEntity userEntity = userRepository.findByEmail(userEmail);
-//		UserEntity userFriendEntity=userRepository.findByEmail(friendEmail);
-//
-//		FriendEntity friendEntity = new FriendEntity();
-//		
-//		friendEntity.setUserId(userEntity);
-//		friendEntity.setFriendId(userFriendEntity.getId());
-//		friendRepository.delete(friendEntity);
-//	}
+		FriendEntity friendEntity = new FriendEntity();
+		friendEntity.setId(userEntity.getId());
+		friendEntity.setUserId(userEntity);
+		friendEntity.setFriendId(userFriendEntity.getId());
+		friendRepository.delete(friendEntity);
+	}
 
 }

@@ -6,4 +6,5 @@ public interface TweetService {
 	TweetDTO postTweet(TweetDTO tweetDto);
 	TweetDTO updateTweet(TweetDTO tweetDto);
 	TweetDTO getTweetById(String tweetId);
+    void deleteTweet(String tweetId);
 }

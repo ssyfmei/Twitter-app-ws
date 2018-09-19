@@ -18,6 +18,9 @@ import com.yifengblog.twitter.ws.tweet.service.TweetService;
 import com.yifengblog.twitter.ws.tweet.shared.dto.TweetDTO;
 import com.yifengblog.twitter.ws.user.ui.request.TweetDetailsRequestModel;
 import com.yifengblog.twitter.ws.user.ui.request.TweetUpdateRequestModel;
+import com.yifengblog.twitter.ws.user.ui.response.OperationStatusModel;
+import com.yifengblog.twitter.ws.user.ui.response.RequestOperationNameEnum;
+import com.yifengblog.twitter.ws.user.ui.response.RequestOperationStatusEnum;
 import com.yifengblog.twitter.ws.user.ui.response.TweetResp;
 
 @RestController
@@ -43,13 +46,14 @@ public class TweetController {
 		return postedResponse;
 	}
 	
+	
 	@PutMapping(path = "/{tweetId}", 
 			consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, 
 			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public TweetResp updateUser(@PathVariable String tweetId, 
-			                    @RequestBody TweetUpdateRequestModel tweetDetails) {
+	public TweetResp updateTweet(@PathVariable String tweetId, 
+			                     @RequestBody TweetUpdateRequestModel tweetDetails) {
+	    
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		
 		TweetDTO tweetDto = modelMapper.map(tweetDetails, TweetDTO.class);
 		tweetDto.setCreatedAt(timestamp);
 		tweetDto.setTweetId(tweetId);
@@ -58,19 +62,22 @@ public class TweetController {
 		return modelMapper.map(updatedDto, TweetResp.class);
 	}
 	
+	
 	@GetMapping(path = "/{tweetId}",  
-			produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-	public TweetResp getUser(@PathVariable String tweetId)
-	{
+			    produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public TweetResp getTweet(@PathVariable String tweetId) {
+	    
 		TweetDTO tweetDto = tweetService.getTweetById(tweetId);
-		
 		return modelMapper.map(tweetDto, TweetResp.class);
 	}
 	
-	@DeleteMapping(path="/{id}",
+	@DeleteMapping(path="/{tweetId}",
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) 
-	public void deletePost() {
-		
-		
+	public OperationStatusModel deleteTweet(@PathVariable String tweetId) {
+	    OperationStatusModel returnValue = new OperationStatusModel();
+	    returnValue.setOperationName(RequestOperationNameEnum.DELETE.name());
+		tweetService.deleteTweet(tweetId);
+		returnValue.setOperationResult(RequestOperationStatusEnum.SUCCESS.name());
+	    return returnValue;
 	}
 }

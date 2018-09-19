@@ -26,12 +26,13 @@ public class TokenAuthenticationFilter extends BasicAuthenticationFilter{
             HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         
         String header = request.getHeader(SecurityConstants.HEADER_STRING);
-        
         if(header == null || !header.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
         UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(request);
+        
+        // This line set the security context
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         chain.doFilter(request, response);
     }
