@@ -67,7 +67,7 @@ public class TweetController {
 			    produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
 	public TweetResp getTweet(@PathVariable String tweetId) {
 	    
-		TweetDTO tweetDto = tweetService.getTweetById(tweetId);
+		TweetDTO tweetDto = tweetService.getTweet(tweetId);
 		return modelMapper.map(tweetDto, TweetResp.class);
 	}
 	

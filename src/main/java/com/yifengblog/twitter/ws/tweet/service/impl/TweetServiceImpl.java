@@ -57,7 +57,7 @@ public class TweetServiceImpl implements TweetService
 	}
 
 	@Override
-	public TweetDTO getTweetById(String tweetId) {
+	public TweetDTO getTweet(String tweetId) {
 		TweetEntity tweetEntity = tweetRepository.findByTweetId(tweetId);
 		return modelMapper.map(tweetEntity, TweetDTO.class);
 	}
@@ -65,9 +65,6 @@ public class TweetServiceImpl implements TweetService
     @Override
     public void deleteTweet(String tweetId) {
         TweetEntity tweetEntity = tweetRepository.findByTweetId(tweetId);
-//        if(tweetEntity == null) {
-//            throw new UserServiceException(ErrorMessageEnum.NO_RECORD_FOUND.getErrorMessage());
-//        }
         tweetRepository.delete(tweetEntity);
     }
 

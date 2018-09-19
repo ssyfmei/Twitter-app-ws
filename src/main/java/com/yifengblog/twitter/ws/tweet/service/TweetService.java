@@ -5,6 +5,6 @@ import com.yifengblog.twitter.ws.tweet.shared.dto.TweetDTO;
 public interface TweetService {
 	TweetDTO postTweet(TweetDTO tweetDto);
 	TweetDTO updateTweet(TweetDTO tweetDto);
-	TweetDTO getTweetById(String tweetId);
+	TweetDTO getTweet(String tweetId);
     void deleteTweet(String tweetId);
 }
