@@ -44,3 +44,26 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 ## Get Started
 
+#### Deployment
+
+1. Set up database connection parameters in application.properties file.
+2. Produce a war file and deploy it on a server using a servlet container e.g. Tomcat or Jetty.
+
+#### User Login
+
+Send a post request to www.demosite.com/users/login. The request body formatted in JSON:
+
+```json
+{
+    "email": "sha@gmail.com",
+    "password":"abc123"
+}
+```
+
+The response header contains an authorization token.
+
+```http
+AUthorization →Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtY295QGdtYWlsLmNvbSIsImV4cCI6MTUzNzQ1OTM2M30.FvRlDENJsV3ihjgSw8zCMyebNoBIqlXm--JmDuiWsc8vi--tVIgdThP0NYYXrlND0SacqZz0khWfyMFjWzgOjw
+```
+
+This header will authorize a frontend app to manipulate data of the specific user. Add this header to following API calls.
