@@ -47,11 +47,11 @@ public class UserController {
 		return modelMapper.map(userDto, UserResp.class);
 	}
 	
-	@PutMapping(path="/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+	@PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
 			                  produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public UserResp updateUser(@PathVariable String id, @RequestBody UserDetailsRequestModel userDetails) {
+	public UserResp updateUser(@PathVariable String userId, @RequestBody UserDetailsRequestModel userDetails) {
 		UserDTO userDto = modelMapper.map(userDetails, UserDTO.class);
-		UserDTO updatedUser = userService.updateUser(id, userDto);
+		UserDTO updatedUser = userService.updateUser(userId, userDto);
 		UserResp returnValue = modelMapper.map(updatedUser, UserResp.class);
 		return returnValue; 
 	}
