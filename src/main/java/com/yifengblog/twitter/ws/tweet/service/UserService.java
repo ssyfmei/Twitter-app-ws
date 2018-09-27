@@ -14,4 +14,6 @@ public interface UserService extends UserDetailsService {
 	public UserDTO updateUser(String id, UserDTO userDto);
 	public void deleteUser(String userId);
 	public UserDTO getUser(String userId);
+    public boolean verifyEmailToken(String token);
+    public boolean requestPasswordReset(String email);
 }

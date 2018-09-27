@@ -1,5 +1,5 @@
 package com.yifengblog.twitter.ws.user.ui.response;
 
 public enum RequestOperationNameEnum {
-    DELETE
+    DELETE,VERIFY_EMAIL,REQUEST_PASSWORD_RESET
 }
