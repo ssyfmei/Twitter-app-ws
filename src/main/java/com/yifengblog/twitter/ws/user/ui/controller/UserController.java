@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yifengblog.twitter.ws.tweet.service.UserService;
 import com.yifengblog.twitter.ws.tweet.shared.dto.TweetDTO;
 import com.yifengblog.twitter.ws.tweet.shared.dto.UserDTO;
+import com.yifengblog.twitter.ws.user.ui.request.PasswordResetModel;
 import com.yifengblog.twitter.ws.user.ui.request.PasswordResetRequestModel;
 import com.yifengblog.twitter.ws.user.ui.request.UserDetailsRequestModel;
 import com.yifengblog.twitter.ws.user.ui.response.OperationStatusModel;
@@ -113,4 +114,24 @@ public class UserController {
 	    }
 	    return returnValue;
 	}
+	
+	@PostMapping(path="/password-reset",
+	        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+	        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+	public OperationStatusModel resetPassword(@RequestBody PasswordResetModel model) {
+	    OperationStatusModel returnValue = new OperationStatusModel();
+	    
+	    boolean operationResult = userService.resetPassword(
+	            model.getToken(), model.getPassword());
+	    
+	    returnValue.setOperationName(RequestOperationNameEnum.PASSWORD_RESET.name());
+        if(operationResult) {
+            returnValue.setOperationResult(RequestOperationStatusEnum.SUCCESS.name());
+        } else {
+            returnValue.setOperationResult(RequestOperationStatusEnum.ERROR.name());
+        }
+        return returnValue;
+	}
+	
+	
 }

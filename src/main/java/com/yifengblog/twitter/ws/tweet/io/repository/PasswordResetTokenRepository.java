@@ -7,5 +7,5 @@ import com.yifengblog.twitter.ws.tweet.io.entity.PasswordResetTokenEntity;
 
 @Repository
 public interface PasswordResetTokenRepository extends CrudRepository<PasswordResetTokenEntity, Long>{
-
+    PasswordResetTokenEntity findByToken(String token);
 }
