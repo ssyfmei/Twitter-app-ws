@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.yifengblog.twitter.ws.tweet.exceptions.UserServiceException;
 import com.yifengblog.twitter.ws.tweet.io.entity.PasswordResetTokenEntity;
 import com.yifengblog.twitter.ws.tweet.io.entity.TweetEntity;
 import com.yifengblog.twitter.ws.tweet.io.entity.UserEntity;
@@ -45,6 +46,9 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getUserByEmail(String email) {
 		UserDTO returnValue = new UserDTO();
 	    UserEntity userEntity = userRepository.findByEmail(email);
+	    if(userEntity == null)
+	        throw new UserServiceException("no result found for this email");
+	    
 	    BeanUtils.copyProperties(userEntity, returnValue);
 	    return returnValue;
 //	    UserEntity userEntity = userRepository.findByEmail(email);
@@ -88,6 +92,22 @@ public class UserServiceImpl implements UserService {
 		return returnValue;
 	}
 
+	@Override
+    public List<TweetDTO> getTweetsByEmail(String userEmail) {
+	    List<TweetDTO> returnValue = new ArrayList<>();
+        
+        UserEntity userEntity = userRepository.findByEmail(userEmail);
+        if(userEntity == null) return returnValue;
+        
+        Iterable<TweetEntity> tweets = tweetRepository.findAllByUserDetails(userEntity);
+        
+        for(TweetEntity tweet: tweets) {
+            returnValue.add(modelMapper.map(tweet, TweetDTO.class));
+        }
+        return returnValue;
+    }
+	
+	
 	@Override
 	public UserDTO updateUser(String userId, UserDTO userDto) {	
 		UserEntity userEntity = userRepository.findByUserId(userId);
@@ -186,4 +206,6 @@ public class UserServiceImpl implements UserService {
         
         return returnValue;
     }
+
+    
 }

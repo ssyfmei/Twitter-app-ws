@@ -39,7 +39,7 @@ public class UserEntity implements Serializable
 	private List<TweetEntity> tweets;
 	
 	@OneToMany(mappedBy="userId", cascade=CascadeType.ALL)
-	private List<FriendEntity> friends;
+	private List<FollowEntity> friends;
 	
 	public long getId() {
 		return id;

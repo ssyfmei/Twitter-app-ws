@@ -43,17 +43,18 @@ public class UserController {
 	public UserResp createUser(@RequestBody UserDetailsRequestModel userDetails) {
 		UserDTO userDto = modelMapper.map(userDetails, UserDTO.class);
 		
-		
 		UserDTO  createUser = userService.createUser(userDto);
 		UserResp returnValue = modelMapper.map(createUser, UserResp.class);
 		return returnValue;
 	}
+	
 	
 	@GetMapping(path="/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public UserResp getUser(@PathVariable String userId) {
 		UserDTO userDto = userService.getUser(userId);
 		return modelMapper.map(userDto, UserResp.class);
 	}
+	
 	
 	@PutMapping(path="/{userId}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
 			                  produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -64,6 +65,7 @@ public class UserController {
 		return returnValue; 
 	}
 	
+	
 	@DeleteMapping(path="/{userId}")
 	public String deleteUser(@PathVariable String userId) {
 		userService.deleteUser(userId);
@@ -72,7 +74,6 @@ public class UserController {
 	
 	@GetMapping(path="/{userId}/tweets", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<TweetResp> getTweets(@PathVariable String userId) {
-        
 	    
         List<TweetResp> returnValue = new ArrayList<>();
         List<TweetDTO>  tweetDtos = userService.getTweets(userId);
@@ -84,10 +85,27 @@ public class UserController {
         }
         return returnValue;
     }
+
+	
+	@GetMapping(path="/tweets/email/{userEmail}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<TweetResp> getTweetsByEmail(@PathVariable String userEmail) {
+        
+        List<TweetResp> returnValue = new ArrayList<>();
+        List<TweetDTO>  tweetDtos = userService.getTweetsByEmail(userEmail);
+        
+        if(tweetDtos != null && !tweetDtos.isEmpty()) {
+            for(TweetDTO tweetDto : tweetDtos) {
+                returnValue.add(modelMapper.map(tweetDto, TweetResp.class));
+            }
+        }
+        return returnValue;
+    }
+	
 	
 	@GetMapping(path="/email-verification", 
-	        produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) 
+	            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}) 
 	public OperationStatusModel verifyEmailToken(@RequestParam(value = "token") String token){
+	    
 	    OperationStatusModel returnValue = new OperationStatusModel();
 	    returnValue.setOperationName(RequestOperationNameEnum.VERIFY_EMAIL.name());
 	    
@@ -99,6 +117,7 @@ public class UserController {
 	    }
 	    return returnValue;
 	}
+	
 	
 	@PostMapping(path="/password-reset-request",
 	        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -114,6 +133,7 @@ public class UserController {
 	    }
 	    return returnValue;
 	}
+	
 	
 	@PostMapping(path="/password-reset",
 	        consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -132,6 +152,4 @@ public class UserController {
         }
         return returnValue;
 	}
-	
-	
 }

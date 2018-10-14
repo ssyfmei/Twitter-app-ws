@@ -7,8 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name="friends")
-public class FriendEntity 
-{
+public class FollowEntity {
+    
 	@Id
 	@GeneratedValue  // need revision later
 	private long id;
@@ -17,7 +17,7 @@ public class FriendEntity
 	@JoinColumn(name="users_id")
 	private UserEntity userId;
 	
-	private long friendId;
+	private long followeeId;
 	
 	public long getId() {
 		return id;
@@ -35,11 +35,12 @@ public class FriendEntity
 		this.userId = userId;
 	}
 
-	public long getFriendId() {
-		return friendId;
+	public long getFolloweeId() {
+		return followeeId;
+	}
+	
+	public void setFolloweeId(long friendId) {
+		this.followeeId = friendId;
 	}
 
-	public void setFriendId(long friendId) {
-		this.friendId = friendId;
-	}
 }

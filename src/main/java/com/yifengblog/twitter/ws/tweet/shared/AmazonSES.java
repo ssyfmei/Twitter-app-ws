@@ -80,7 +80,7 @@ public class AmazonSES {
         client.sendEmail(request);
 
         System.out.println("Email sent!");
-
+        
     }
 
      public boolean sendPasswordResetRequest(String firstName, String email, String token) 
@@ -119,5 +119,4 @@ public class AmazonSES {
           
           return returnValue;
       }
-
 }

@@ -2,7 +2,7 @@ package com.yifengblog.twitter.ws.user.ui.request;
 
 public class FriendRequestModel {
 	private String userEmail;
-	private String friendEmail;
+	private String followeeEmail;
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -10,10 +10,10 @@ public class FriendRequestModel {
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
 	}
-	public String getFriendEmail() {
-		return friendEmail;
+	public String getFolloweeEmail() {
+		return followeeEmail;
 	}
-	public void setFriendEmail(String friendEmail) {
-		this.friendEmail = friendEmail;
+	public void setFolloweeEmail(String friendEmail) {
+		this.followeeEmail = friendEmail;
 	}
 }
