@@ -14,11 +14,11 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 | Method   | URL                                         | Description              |
 | -------- | ------------------------------------------- | ------------------------ |
-| `post`   | http://www.demosite.com/users/              | Create a new user        |
-| `get`    | http://www.demosite.com/users/userId        | Get info of a user       |
-| `put`    | http://www.demosite.com/users/userId        | Update a user            |
-| `delete` | http://www.demosite.com/users/userId        | Delete a user            |
-| `get`    | http://www.demosite.com/users/userId/tweets | Get all tweets of a user |
+| `post`   | 1http://www.demosite.com/users/              | Create a new user        |
+| `get`    | 1http://www.demosite.com/users/userId        | Get info of a user       |
+| `put`    | 1http://www.demosite.com/users/userId        | Update a user            |
+| `delete` | 1http://www.demosite.com/users/userId        | Delete a user            |
+| `get`    | 1http://www.demosite.com/users/userId/tweets | Get all tweets of a user |
 
 
 
@@ -26,10 +26,10 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 | Method   | URL                                    | Description         |
 | -------- | -------------------------------------- | ------------------- |
-| `post`   | http://www.demosite.com/tweets         | Post a new tweet    |
-| `get`    | http://www.demosite.com/tweets/tweetId | Get info of a tweet |
-| `put`    | http://www.demosite.com/tweets/tweetId | Update a tweet      |
-| `delete` | http://www.demosite.com/tweets/tweetId | Delete a tweet      |
+| `post`   | 1http://www.demosite.com/tweets         | Post a new tweet    |
+| `get`    | 1http://www.demosite.com/tweets/tweetId | Get info of a tweet |
+| `put`    | 1http://www.demosite.com/tweets/tweetId | Update a tweet      |
+| `delete` | 1http://www.demosite.com/tweets/tweetId | Delete a tweet      |
 
 
 
@@ -37,8 +37,8 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 | Method   | URL                             | Description                   |
 | -------- | ------------------------------- | ----------------------------- |
-| `post`   | http://www.demosite.com/friends | Establish friend relationship |
-| `delete` | http://www.demosite.com/friends | Remove friend relationship    |
+| `post`   | 1http://www.demosite.com/friends | Establish friend relationship |
+| `delete` | 1http://www.demosite.com/friends | Remove friend relationship    |
 
 
 
