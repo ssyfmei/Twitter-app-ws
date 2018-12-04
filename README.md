@@ -9,16 +9,15 @@ This a backend program of a twitter-like system. Backend services are exposed to
 The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. API request and response bodies are formatted in JSON or XML.
 
 
-
 #### user API
 
 | Method   | URL                                         | Description              |
 | -------- | ------------------------------------------- | ------------------------ |
-| `post`   | 1http://www.demosite.com/users/              | Create a new user        |
-| `get`    | 1http://www.demosite.com/users/userId        | Get info of a user       |
-| `put`    | 1http://www.demosite.com/users/userId        | Update a user            |
-| `delete` | 1http://www.demosite.com/users/userId        | Delete a user            |
-| `get`    | 1http://www.demosite.com/users/userId/tweets | Get all tweets of a user |
+| `post`   | sitename/users/                             | Create a new user        |
+| `get`    | sitename/users/userId                       | Get info of a user       |
+| `put`    | sitename/users/userId                       | Update a user            |
+| `delete` | sitename/users/userId                       | Delete a user            |
+| `get`    | sitename/users/userId/tweets                | Get all tweets of a user |
 
 
 
@@ -26,10 +25,10 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 | Method   | URL                                    | Description         |
 | -------- | -------------------------------------- | ------------------- |
-| `post`   | 1http://www.demosite.com/tweets         | Post a new tweet    |
-| `get`    | 1http://www.demosite.com/tweets/tweetId | Get info of a tweet |
-| `put`    | 1http://www.demosite.com/tweets/tweetId | Update a tweet      |
-| `delete` | 1http://www.demosite.com/tweets/tweetId | Delete a tweet      |
+| `post`   | sitename/tweets                        | Post a new tweet    |
+| `get`    | sitename/tweets/tweetId                | Get info of a tweet |
+| `put`    | sitename/tweets/tweetId                | Update a tweet      |
+| `delete` | sitename/tweets/tweetId                | Delete a tweet      |
 
 
 
@@ -37,8 +36,8 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 | Method   | URL                             | Description                   |
 | -------- | ------------------------------- | ----------------------------- |
-| `post`   | 1http://www.demosite.com/friends | Establish friend relationship |
-| `delete` | 1http://www.demosite.com/friends | Remove friend relationship    |
+| `post`   | sitename/friends                | Establish friend relationship |
+| `delete` | sitename/friends                | Remove friend relationship    |
 
 
 
