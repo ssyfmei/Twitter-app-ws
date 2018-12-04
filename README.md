@@ -50,7 +50,7 @@ The APIs are HTTP-based RESTful APIs that use JSON Web Token for authorization. 
 
 #### User Login
 
-Send a post request to www.demosite.com/users/login. The request body formatted in JSON:
+Send a post request to sitename/users/login. The request body formatted in JSON:
 
 ```json
 {
